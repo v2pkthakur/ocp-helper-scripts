@@ -1,0 +1,52 @@
+- name: Pre-reqs on bastion
+  hosts: all
+  become: true
+  tasks:
+  - name: Move Existing Repos
+    shell: mv /etc/yum.repos.d/*.repo /root/
+    ignore_errors: yes
+
+
+  - name: Clean Yum cache
+    shell: yum clean all
+    ignore_errors: yes
+
+  - name: Get the magic
+    include_vars: magic.yml
+
+  - name: subscribe hosts
+    shell: subscription-manager register --username prthakur@redhat.com --password "{{ magic }}"
+
+  
+  - name: Attach to the pool
+    shell: subscription-manager attach --pool=8a85f98460bfb0470160c2ff250f3e66
+
+  - name: Disable all repos
+    shell: subscription-manager repos --disable=*
+
+  - name: Enable Desired Repos
+    shell: subscription-manager repos --enable=rhel-7-fast-datapath-rpms --enable=rhel-7-server-ansible-2.4-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-ose-3.10-rpms --enable=rhel-7-server-rpms
+
+  - name: Install Packages
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+    - wget
+    - docker
+    - git 
+    - net-tools 
+    - bind-utils 
+    - yum-utils 
+    - iptables-services 
+    - bridge-utils 
+    - bash-completion 
+    - kexec-tools 
+    - sos 
+    - psacct
+
+  - name: Start Docker service
+    service:
+      enabled: true
+      name: docker
+      state: running

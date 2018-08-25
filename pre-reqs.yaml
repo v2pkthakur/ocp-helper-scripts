@@ -12,7 +12,7 @@
     include_vars: magic.yml
 
   - name: Register the System
-    shell: subscription-manager register --username prthakur@redhat.com --password {{ magic }}
+    shell: subscription-manager register --username prthakur@redhat.com --password {{ magic }} --force
   
 
   - name: Attach to pool

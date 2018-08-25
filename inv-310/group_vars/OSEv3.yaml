@@ -1,0 +1,33 @@
+
+##### ANSIBLE PARAMS #####
+
+ansible_ssh_user: ocpadm
+ansible_become: true
+timeout: 60
+
+
+openshift_release: v3.10
+        
+openshift_master_cluster_method: 
+openshift_master_cluster_hostname: 
+openshift_master_cluster_public_hostname: 
+openshift_master_identity_providers: [{'name': 'htpasswd_auth','login': 'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
+openshift_master_default_subdomain: apps.test.example.com
+
+openshift_master_named_certificates: 
+openshift_master_overwrite_named_certificates: 
+
+openshift_hosted_router_certificate: 
+openshift_deployment_type: openshift-enterprise
+
+openshift_router_selector:
+openshift_registry_selector: 
+
+#### NETWORKING PARAMS####
+#os_sdn_network_plugin_name: 
+#osm_cluster_network_cidr:  Defaults to 10.128.0.0/14
+#openshift_portal_net:  Defaults to 172.30.0.0/16 
+#osm_host_subnet_length: Defaults to 9 which means that a subnet of size /23 
+
+
+

@@ -1,0 +1,52 @@
+[masters]
+idc-msdosma01p 
+idc-msdosma02p 
+idc-msdosma03p  
+
+[etcd]
+idc-msdosma01p 
+idc-msdosma02p 
+idc-msdosma03p 
+
+[worker]
+idc-msdoswo01p 
+idc-msdoswo02p 
+idc-msdoswo03p 
+idc-msdoswo04p 
+
+[nodes]
+idc-msdosma01p openshift_node_group_name='node-config-master'
+idc-msdosma02p openshift_node_group_name='node-config-master'
+idc-msdosma03p openshift_node_group_name='node-config-master' 
+idc-msdosif01p openshift_node_group_name='node-config-compute'
+idc-msdosif02p openshift_node_group_name='node-config-compute'
+idc-msdoswo01p openshift_node_group_name='node-config-worker'
+idc-msdoswo02p openshift_node_group_name='node-config-worker' 
+idc-msdoswo03p openshift_node_group_name='node-config-worker'
+idc-msdoswo04p openshift_node_group_name='node-config-worker'
+
+idc-msdoslo01p 
+idc-msdoslo02p 
+idc-msdoslo03p 
+idc-msdosif03p 
+idc-msdosif04p 
+
+[gluster]
+idc-msdosgs01p 
+idc-msdosgs02p 
+idc-msdosgs03p 
+idc-msdosgs04p
+
+
+
+
+[lb]
+
+
+
+[OSEv3:children]
+masters
+nodes
+etcd
+lb
+

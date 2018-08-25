@@ -1,0 +1,45 @@
+- name: Setup Pre-Reqs. 
+  hosts: all
+  become: true
+  tasks:
+  - name: CleanUp the previous yum repos
+    shell: mv /etc/yum.repos.d/* /root/
+
+  - name: Clean Yum Cache.
+    shell: yum clean all
+
+  - name: Get passwd
+    include_vars: magic.yml
+
+  - name: Register the System
+    shell: subscription-manager register --username prthakur@redhat.com --password {{ magic }}
+  
+
+  - name: Attach to pool
+    shell: subscription-manager attach --pool=8a85f98460bfb0470160c2ff250f3e66
+
+  - name: Enable the Repos
+    shell: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.10-rpms" --enable="rhel-7-fast-datapath-rpms" --enable="rhel-7-server-ansible-2.4-rpms"
+
+  - name: Install Base Packages
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+    - wget 
+    - git 
+    - net-tools 
+    - bind-utils 
+    - yum-utils 
+    - iptables-services 
+    - bridge-utils 
+    - bash-completion 
+    - kexec-tools 
+    - sos 
+    - psacct
+    - docker
+
+  - name: Start the Docker Service
+    shell: systemctl start docker && systemctl enable docker
+
+

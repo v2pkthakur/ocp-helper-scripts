@@ -1,0 +1,51 @@
+###########################################################################
+### OpenShift Hosts
+###########################################################################
+[OSEv3:children]
+lb
+masters
+etcd
+nodes
+nfs
+#glusterfs
+
+[lb]
+loadbalancer1.58d2.internal
+
+[masters]
+master1.58d2.internal openshift_node_group_name='node-config-master'
+master2.58d2.internal openshift_node_group_name='node-config-master'
+master3.58d2.internal openshift_node_group_name='node-config-master'
+
+[etcd]
+master1.58d2.internal openshift_node_group_name='node-config-master'
+master2.58d2.internal openshift_node_group_name='node-config-master'
+master3.58d2.internal openshift_node_group_name='node-config-master'
+
+[nodes]
+## These are the masters
+master1.58d2.internal openshift_node_group_name='node-config-master'
+master2.58d2.internal openshift_node_group_name='node-config-master'
+master3.58d2.internal openshift_node_group_name='node-config-master'
+
+## These are infranodes
+infranode1.58d2.internal openshift_node_group_name='node-config-infra'
+infranode2.58d2.internal openshift_node_group_name='node-config-infra'
+
+## These are regular nodes
+node1.58d2.internal openshift_node_group_name='node-config-compute'
+node2.58d2.internal openshift_node_group_name='node-config-compute'
+node3.58d2.internal openshift_node_group_name='node-config-compute'
+
+## These are CNS nodes
+# support1.58d2.internal openshift_hostname=support1.58d2.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '58d2'}"
+# support2.58d2.internal openshift_hostname=support2.58d2.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '58d2'}"
+# support3.58d2.internal openshift_hostname=support3.58d2.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '58d2'}"
+
+[nfs]
+support1.58d2.internal  
+
+#[glusterfs]
+# support1.58d2.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support2.58d2.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support3.58d2.internal glusterfs_devices='[ "/dev/xvdd" ]'

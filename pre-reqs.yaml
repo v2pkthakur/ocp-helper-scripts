@@ -45,6 +45,11 @@
     - sos 
     - psacct
 
+  - name: Yum Update all 
+    yum:
+      name: '*'
+      state: latest
+
   - name: Start Docker service
     service:
       enabled: true

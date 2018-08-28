@@ -1,5 +1,5 @@
 - name: Pre-reqs on bastion
-  hosts: all
+  hosts: support3.e0ec.internal support2.e0ec.internal
   become: true
   tasks:
   - name: Move Existing Repos
@@ -15,7 +15,7 @@
     include_vars: magic.yml
 
   - name: subscribe hosts
-    shell: subscription-manager register --username prthakur@redhat.com --password "{{ magic }}"
+    shell: subscription-manager register --force --username prthakur@redhat.com --password "{{ magic }}"
 
   
   - name: Attach to the pool

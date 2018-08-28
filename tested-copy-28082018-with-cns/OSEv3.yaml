@@ -1,0 +1,45 @@
+timeout: 60
+ansible_become: yes
+ansible_ssh_user: ec2-user
+
+openshift_enable_unsupported_configurations: True
+openshift_disable_check: "memory_availability"
+openshift_release: v3.10
+openshift_master_cluster_method: native 
+openshift_master_cluster_hostname: loadbalancer1.c1f4.internal
+openshift_master_cluster_public_hostname: loadbalancer1.c1f4.example.opentlc.com
+openshift_master_identity_providers: [{'name': 'htpasswd_auth','login': 'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider',}]
+openshift_master_default_subdomain: apps.c1f4.example.opentlc.com
+openshift_deployment_type: openshift-enterprise
+
+
+openshift_node_groups: [{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true']}, {'name': 'node-config-logging', 'labels': ['node-role.kubernetes.io/logging=true']}, {'name': 'node-config-infra-registry', 'labels': ['node-role.kubernetes.io/registry=true']}]
+
+
+
+openshift_storage_glusterfs_image: "registry.access.redhat.com/rhgs3/rhgs-server-rhel7:v3.9"
+# Container image to use for gluster-block-provisioner pod
+openshift_storage_glusterfs_block_image: "registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.9"
+# # Container image to use for heketi pods
+openshift_storage_glusterfs_heketi_image: "registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:v3.9"
+
+# CNS storage cluster for applications
+openshift_storage_glusterfs_namespace: app-storage
+openshift_storage_glusterfs_storageclass: true
+openshift_storage_glusterfs_storageclass_default: false
+openshift_storage_glusterfs_block_deploy: false
+
+openshift_router_selector: 'node-role.kubernetes.io/infra=true'
+openshift_registry_selector: 'node-role.kubernetes.io/registry=true'
+
+#### NETWORKING PARAMS####
+os_sdn_network_plugin_name: redhat/openshift-ovs-networkpolicy
+
+##osm_cluster_network_cidr:  Defaults to 10.128.0.0/14
+##openshift_portal_net:  Defaults to 172.30.0.0/16 
+##osm_host_subnet_length: Defaults to 9 which means that a subnet of size /23 
+openshift_logging_install_logging: false
+
+openshift_metrics_install_metrics: false
+template_service_broker_install: false
+ansible_service_broker_install: false

@@ -1,0 +1,47 @@
+###########################################################################
+### OpenShift Hosts
+###########################################################################
+[OSEv3:children]
+lb
+masters
+etcd
+nodes
+#glusterfs
+
+[lb]
+loadbalancer1.c1f4.internal
+
+[masters]
+master1.c1f4.internal 
+master2.c1f4.internal 
+master3.c1f4.internal 
+
+[etcd]
+master1.c1f4.internal 
+master2.c1f4.internal 
+master3.c1f4.internal 
+
+[nodes]
+## These are the masters
+master1.c1f4.internal openshift_node_group_name='node-config-master'
+master2.c1f4.internal openshift_node_group_name='node-config-master'
+master3.c1f4.internal openshift_node_group_name='node-config-master'
+
+## These are infranodes
+infranode1.c1f4.internal openshift_node_group_name='node-config-infra'
+infranode2.c1f4.internal openshift_node_group_name='node-config-infra'
+
+## These are regular nodes
+node1.c1f4.internal openshift_node_group_name='node-config-infra-registry'
+node2.c1f4.internal openshift_node_group_name='node-config-logging'
+node3.c1f4.internal openshift_node_group_name='node-config-logging'
+
+## These are CNS nodes
+support1.c1f4.internal openshift_node_group_name='node-config-compute'
+support2.c1f4.internal openshift_node_group_name='node-config-compute'
+support3.c1f4.internal openshift_node_group_name='node-config-compute'
+
+#[glusterfs]
+# support1.c1f4.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support2.c1f4.internal glusterfs_devices='[ "/dev/xvdd" ]'
+# support3.c1f4.internal glusterfs_devices='[ "/dev/xvdd" ]'

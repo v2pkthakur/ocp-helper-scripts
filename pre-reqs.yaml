@@ -1,14 +1,13 @@
 - name: Pre-reqs on bastion
-  hosts: support3.e0ec.internal support2.e0ec.internal
+  hosts: all
   become: true
   tasks:
-  - name: Move Existing Repos
-    shell: mv /etc/yum.repos.d/*.repo /root/
-    ignore_errors: yes
-
-
   - name: Clean Yum cache
     shell: yum clean all
+    ignore_errors: yes
+
+  - name: Move Existing Repos
+    shell: mv /etc/yum.repos.d/*.repo /root/
     ignore_errors: yes
 
   - name: Get the magic

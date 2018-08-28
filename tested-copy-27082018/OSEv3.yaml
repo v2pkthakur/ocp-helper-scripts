@@ -4,7 +4,7 @@ ansible_become: yes
 ansible_ssh_user: ec2-user
 
 openshift_enable_unsupported_configurations: True
-openshift_disable_check: "memory_availability"
+openshift_disable_check: "memory_availability, docker_image_availability"
 
 openshift_release: v3.10
 

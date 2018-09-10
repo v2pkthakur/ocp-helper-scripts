@@ -1,4 +1,4 @@
-timeout: 60
+imeout: 60
 ansible_become: yes
 ansible_ssh_user: ec2-user
 

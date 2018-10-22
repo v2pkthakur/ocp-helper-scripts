@@ -24,7 +24,7 @@
     shell: subscription-manager repos --disable=*
 
   - name: Enable Desired Repos
-    shell: subscription-manager repos --enable=rhel-7-fast-datapath-rpms --enable=rhel-7-server-ansible-2.6-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-ose-3.11-rpms --enable=rhel-7-server-rpms
+    shell: subscription-manager repos --enable=rhel-7-fast-datapath-rpms --enable=rhel-7-server-ansible-2.4-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-ose-3.10-rpms --enable=rhel-7-server-rpms
 
   - name: Install Packages
     yum:
@@ -44,10 +44,10 @@
     - sos 
     - psacct
 
-#  - name: Yum Update all 
-#    yum:
-#      name: '*'
-#      state: latest
+  - name: Yum Update all 
+    yum:
+      name: '*'
+      state: latest
 
   - name: Start Docker service
     service:

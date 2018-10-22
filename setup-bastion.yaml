@@ -1,5 +1,5 @@
 - name: Pre-reqs on bastion
-  hosts: all
+  hosts: localhost
   become: true
   tasks:
   - name: Clean Yum cache
@@ -43,11 +43,12 @@
     - kexec-tools 
     - sos 
     - psacct
+    
 
-#  - name: Yum Update all 
-#    yum:
-#      name: '*'
-#      state: latest
+  - name: Yum Update all 
+    yum:
+      name: 'openshift-ansible'
+      state: latest
 
   - name: Start Docker service
     service:

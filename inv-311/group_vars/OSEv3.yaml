@@ -1,0 +1,26 @@
+timeout: 60
+ansible_become: yes
+ansible_ssh_user: ocpadmin
+
+openshift_enable_unsupported_configurations: True
+openshift_disable_check: "memory_availability"
+openshift_release: v3.11
+openshift_image_tag: v3.11
+
+openshift_master_default_subdomain: apps.ocp311.fifgroup.co.id
+openshift_deployment_type: openshift-enterprise
+
+openshift_node_groups: [{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true']}, {'name': 'node-config-infra-router', 'labels': ['node-role.kubernetes.io/router=true']}]
+
+
+openshift_router_selector: 'node-role.kubernetes.io/infra=true'
+openshift_registry_selector: 'node-role.kubernetes.io/router=true'
+
+oreg_auth_user: 'prthakur@redhat.com'
+
+
+openshift_logging_install_logging: false
+openshift_metrics_install_metrics: false
+template_service_broker_install: false
+ansible_service_broker_install: false
+

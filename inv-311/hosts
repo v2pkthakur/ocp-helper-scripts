@@ -1,0 +1,20 @@
+[masters]
+master.ocp311.fifgroup.co.id
+
+
+[etcd]
+master.ocp311.fifgroup.co.id
+
+
+[nodes]
+master.ocp311.fifgroup.co.id openshift_node_group_name='node-config-master'
+infra1.ocp311.fifgroup.co.id openshift_node_group_name='node-config-infra-router'
+infra2.ocp311.fifgroup.co.id openshift_node_group_name='node-config-infra'
+node1.ocp311.fifgroup.co.id openshift_node_group_name='node-config-compute'
+node2.ocp311.fifgroup.co.id openshift_node_group_name='node-config-compute'
+
+
+[OSEv3:children]
+masters
+nodes
+etcd

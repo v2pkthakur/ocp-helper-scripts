@@ -1,20 +1,44 @@
-[masters]
-master.ocp311.fifgroup.co.id
-
-
-[etcd]
-master.ocp311.fifgroup.co.id
-
-
-[nodes]
-master.ocp311.fifgroup.co.id openshift_node_group_name='node-config-master'
-infra1.ocp311.fifgroup.co.id openshift_node_group_name='node-config-infra-router'
-infra2.ocp311.fifgroup.co.id openshift_node_group_name='node-config-infra'
-node1.ocp311.fifgroup.co.id openshift_node_group_name='node-config-compute'
-node2.ocp311.fifgroup.co.id openshift_node_group_name='node-config-compute'
-
+###########################################################################
+### OpenShift Hosts
+###########################################################################
+# openshift_node_labels DEPRECATED
+# openshift_node_problem_detector_install
 
 [OSEv3:children]
+lb
 masters
-nodes
 etcd
+nodes
+
+[lb]
+loadbalancer.d512.internal
+
+[masters]
+master1.d512.internal
+master2.d512.internal
+master3.d512.internal
+
+[etcd]
+master1.d512.internal
+master2.d512.internal
+master3.d512.internal
+
+[nodes]
+## These are the masters
+master1.d512.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
+master2.d512.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
+master3.d512.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
+
+## These are infranodes
+infranode1.d512.internal openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
+infranode2.d512.internal openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
+
+## These are regular nodes
+node1.d512.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
+node2.d512.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
+node3.d512.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
+
+
+#[nfs]
+#support1.d512.internal
+

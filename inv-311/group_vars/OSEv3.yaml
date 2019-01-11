@@ -35,7 +35,7 @@ openshift_enable_olm: false
 #oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 #oreg_url: 'registry.redhat.io'
 oreg_auth_user: "prthakur@redhat.com"
-oreg_auth_password: "Om11COKE#"
+oreg_auth_password: "******"
 
 # For Operator Framework Images
 #openshift_additional_registry_credentials=

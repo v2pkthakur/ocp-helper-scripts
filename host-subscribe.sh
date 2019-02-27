@@ -3,6 +3,6 @@
 subscription-manager register --username prthakur@redhat.com
 subscription-manager attach --pool=8a85f99b65c8c8f1016651638fe56010
 subscription-manager repos --disable='*'
-subscription-manager repos --enable='rhel-7-server-rpms'
-
+subscription-manager repos --enable='rhel-7-server-rpms' --enable='rhel-7-server-ansible-2.6-rpms' --enable='rhel-7-server-ansible-2.6-rpms'
+ --enable='rhel-7-server-ansible-2.6-rpms' --enable='rhel-7-server-ansible-2.6-rpms' --enable='rhel-7-server-rh-common-rpms'
 
